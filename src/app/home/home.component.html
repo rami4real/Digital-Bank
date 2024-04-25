@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        .menu-container{background: linear-gradient(to right,#838d82, #e6ebe5	); padding: 1rem 2.5rem; color: white;       }
+        .font-family-karla { font-family: 'Karla', sans-serif; }
+        .bg-sidebar { background: #102C57; }
+        .cta-btn { color: #102C57; }
+        .upgrade-btn { background:#102C57; }
+        .upgrade-btn:hover { background: #102C57; }
+        .active-nav-link { background: #102C57; }
+        .nav-item:hover { background: #102C57; }
+        .account-link:hover { background: #102C57; }
+    </style>
+</head>
+<body class="bg-gray-100 font-family-karla flex">
+
+    <aside class="relative bg-sidebar h-screen w-64 shadow-xl">
+        <div class="p-6">
+            <a href="#" class="text-white text-2xl font-semibold uppercase hover:text-gray-300">ELMOURADIBANK</a>
+            <p class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i> Accounts
+            </p>
+        </div>
+        <nav class="text-white text-base font-semibold pt-3">
+            <a href="index.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                SAVINGS ACCOUNT 1
+            </a>
+            <a href="blank.html" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+                <i class="fas fa-sticky-note mr-3"></i>
+                CURRENT ACCOUNT 1(ACTIVE)            
+            </a>
+            <button href="forms.html" (click)="accEpargne()" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-align-left mr-3"></i>
+                ADD ACCOUNT epargne
+            </button>
+            <button (click)="accCourant()" href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-align-left mr-3"></i>
+                ADD ACCOUNT courant
+            </button>
+        </nav>
+        <button  (click)="out()" href="/login" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+            Sign Out
+        </button>
+    </aside>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        <!-- Desktop Header -->
+               <!-- Desktop Header -->
+               <div class="menu-container" (clickOutside)="clickedOutside()">
+                <button class="menu-toggler" (click)="toggleMenu()">Account settings</button>
+                <div class="menu" *ngIf="isMenuOpened">
+                  <a class="menu-item">News</a>
+                  <div class="menu-item">Contacts</div>
+                  <div class="menu-item">About</div>
+                </div>
+              </div>
+
+        <div class="w-full bg-white h-screen overflow-x-hidden border-t flex flex-col">
+   
+
+            <main class="w-full flex-grow p-6" style="background-color: #e6ebe5;">
+                
+
+                <div class="flex">
+                    <div *ngFor="let account of Accounts; let isLast=last" [ngClass]="{'m-6': !isLast}" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-700 mb-4">
+                        <div class="inline-flex items-center rounded-md shadow-sm">
+                            <button 
+                                class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg>
+                                </span>
+                                <span class="hidden md:inline-block">Edit</span>
+                            </button>
+                            <button
+                                class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </span>
+                                <span class="hidden md:inline-block">View</span>
+                            </button>
+                            <button (click)="confirmDelete(account.id)"
+                                class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                    </svg>
+                                </span>
+                                <span class="hidden md:inline-block">Delete</span>
+                            </button>
+                        </div>
+                        <a>
+                            <img *ngIf="account.type === 'Compte Courant'" class="rounded-t-lg center m-auto" src="./assets/Savings_account.png" />
+                            <img *ngIf="account.type == 'Compte Épargne'" class="rounded-t-lg m-auto" src="./assets/Current_account.png" />
+                        </a>
+                        <div class="px-5 pb-5 flex flex-col justify-center items-center">
+                            <a href="#">
+                                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ account.type}}</h5>
+                            </a>
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ account.solde }} $</span>
+                        </div>
+
+                            <div class="flex items-center justify-between">
+                                <button (click)="deposit(account)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Deposit
+                                </button>
+                                <button (click)="withdraw(account)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Withdraw
+                                </button>
+                                <button (click)="transfer(account)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    transfer
+                                </button>
+                            </div>
+                    </div>
+                </div>
+                
+                
+            
+    
+            </main>
+            
+            <footer style="background-color: #e6ebe5;" class="w-full bg-white text-right p-4">
+                Built by <a target="_blank" class="underline">ness Tayra</a>.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
