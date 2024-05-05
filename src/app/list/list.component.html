@@ -1,0 +1,23 @@
+<h1>
+    list
+</h1>
+<!-- list.component.html -->
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of allClients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.nom }}</td>
+        <td>{{ client.prenom }}</td>
+        <td>{{ client.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
